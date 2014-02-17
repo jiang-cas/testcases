@@ -1,7 +1,7 @@
 #include "sthread.h"
 #include <stdio.h>
 
-#define N 2
+#define N 8
 
 int *a;
 sthread_barrier_t barrier;
