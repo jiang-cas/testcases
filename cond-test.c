@@ -27,11 +27,9 @@ void *inc_count(void *idp)
     */ 
     if (*count == COUNT_LIMIT) { 
       sthread_cond_signal(&count_threshold_cv); 
-      printf("inc_count(): thread %d, count = %d  Threshold reached.\n",  
-             *my_id, *count); 
+      printf("inc_count(): thread %d, count = %d  Threshold reached.\n", *my_id, *count); 
       } 
-    printf("inc_count(): thread %d, count = %d, unlocking mutex\n",  
-           *my_id, *count); 
+    printf("inc_count(): thread %d, count = %d, unlocking mutex\n", *my_id, *count); 
     sthread_mutex_unlock(&count_mutex); 
  
     /* Do some work so threads can alternate on mutex lock */ 
@@ -95,5 +93,5 @@ sthread_main_wait(3);
  // pthread_attr_destroy(&attr); 
   sthread_mutex_destroy(&count_mutex); 
   sthread_cond_destroy(&count_threshold_cv); 
-  sthread_exit(NULL); 
+  //sthread_exit(NULL); 
 } 
