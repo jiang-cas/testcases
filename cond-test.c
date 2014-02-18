@@ -2,8 +2,8 @@
 #include <stdio.h> 
  
 #define NUM_THREADS  3 
-#define TCOUNT 10 
-#define COUNT_LIMIT 12 
+#define TCOUNT 70 
+#define COUNT_LIMIT 120 
  
 int     *count; 
 int     thread_ids[3] = {0,1,2}; 
@@ -19,7 +19,6 @@ void *inc_count(void *idp)
   for (i=0; i<TCOUNT; i++) { 
     sthread_mutex_lock(&count_mutex); 
     (*count)++; 
-    printf("inc_count(): thread %d, count = %d, locking mutex\n", *my_id, *count); 
  
     /*  
     Check the value of count and signal waiting thread when condition is 
