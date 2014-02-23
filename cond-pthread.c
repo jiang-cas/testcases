@@ -14,7 +14,7 @@ void *inc_count(void *idp)
 { 
   int j,i; 
   double result=0.0; 
-  int *my_id = idp; 
+  int *my_id = (int *)idp; 
  
   for (i=0; i<TCOUNT; i++) { 
     pthread_mutex_lock(&count_mutex); 

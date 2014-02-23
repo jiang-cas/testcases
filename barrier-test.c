@@ -12,10 +12,13 @@ void *func(void *args)
 	sthread_t thread;
 	thread = sthread_self();
 	i = thread.tid;
-	for(k=0;k<10;k++) {
-		a[i] = i + 10;
-		sthread_barrier_wait(&barrier);
-	}
+	a[i] = i;
+	sthread_barrier_wait(&barrier);
+
+	if(i > 0 && i < N-1)
+		a[i] = a[i-1] + a[i+1];
+
+
 	sthread_exit(NULL);
 	return NULL;
 }
@@ -35,10 +38,11 @@ int main()
 //	sthread_barrier_wait(&barrier);
 
 	for(i=0;i<N;i++)
+		sthread_join(thread[i], NULL);
+
+	for(i=0;i<N;i++)
 		printf("%d ", a[i]);
 	printf("\n");
-	for(i=0;i<N;i++)
-		sthread_join(thread[i], NULL);
 
 	mvshared_free(a);
 	return 0;

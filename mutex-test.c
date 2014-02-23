@@ -13,7 +13,7 @@ void *func(void *args)
 	thread = sthread_self();
 	i = thread.tid;
 	sthread_mutex_lock(&mutex);
-	for(j=0;j<N;j++)
+	or(j=0;j<N;j++)
 		a[j] = i + j + 10;
 	sthread_mutex_unlock(&mutex);
 	sthread_exit(NULL);
